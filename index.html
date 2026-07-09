@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>حجز الدروس | أكاديمية مستر السمان</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<?!= include("style"); ?>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<!-- Header -->
+
+<div class="hero">
+
+<div class="logoCircle">
+
+🎓
+
+</div>
+
+<h1>
+
+أكاديمية مستر السمان
+
+</h1>
+
+<p>
+
+احجز مجموعتك الدراسية بسهولة واختر الموعد المناسب
+
+</p>
+
+</div>
+
+<form id="bookingForm">
+
+<!-- اسم الطالب -->
+
+<div class="form-group">
+
+<label>
+
+👤 اسم الطالب
+
+</label>
+
+<input
+
+type="text"
+
+id="name"
+
+placeholder="اكتب الاسم بالكامل"
+
+required>
+
+</div>
+
+<!-- المرحلة -->
+
+<div class="form-group">
+
+<label>
+
+🏫 المرحلة
+
+</label>
+
+<select id="stage" required>
+
+<option>
+
+جارى تحميل المراحل...
+
+</option>
+
+</select>
+
+</div>
+
+<!-- الصف -->
+
+<div class="form-group">
+
+<label>
+
+📚 الصف الدراسى
+
+</label>
+
+<select id="grade" required>
+
+<option>
+
+اختر المرحلة أولاً
+
+</option>
+
+</select>
+
+</div>
+
+<!-- نوعية التعليم -->
+
+<div class="form-group">
+
+<label>
+
+🎓 نوعية التعليم
+
+</label>
+
+<select id="education" required>
+
+<option value="">
+
+اختر النوع
+
+</option>
+
+<option>
+
+عام
+
+</option>
+
+<option>
+
+أزهرى
+
+</option>
+
+</select>
+
+</div>
+
+<!-- النوع -->
+
+<div class="form-group">
+
+<label>
+
+👦 النوع
+
+</label>
+
+<select id="gender" required>
+
+<option value="">
+
+اختر النوع
+
+</option>
+
+<option>
+
+ذكر
+
+</option>
+
+<option>
+
+أنثى
+
+</option>
+
+</select>
+
+</div>
+<!-- الموعد -->
+
+<div class="form-group">
+
+<label>
+
+🕒 اختر الموعد المناسب
+
+</label>
+
+<select id="group" required>
+
+<option value="">
+
+اختر الصف أولاً
+
+</option>
+
+</select>
+
+</div>
+
+<!-- رقم واتساب الطالب -->
+
+<div class="form-group">
+
+<label>
+
+📱 رقم واتساب الطالب
+
+</label>
+
+<input
+
+type="tel"
+
+id="studentPhone"
+
+placeholder="01xxxxxxxxx"
+
+maxlength="11"
+
+required>
+
+</div>
+
+<!-- رقم واتساب ولي الأمر -->
+
+<div class="form-group">
+
+<label>
+
+👨‍👩‍👦 رقم واتساب ولي الأمر
+
+</label>
+
+<input
+
+type="tel"
+
+id="parentPhone"
+
+placeholder="01xxxxxxxxx"
+
+maxlength="11"
+
+required>
+
+</div>
+
+<!-- الرسالة -->
+
+<div id="msg"></div>
+
+<!-- زر الحجز -->
+
+<div class="btnBox">
+
+<button
+
+type="button"
+
+onclick="saveBooking()">
+
+✅ تأكيد الحجز
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<?!= include("script"); ?>
+
+</body>
+
+</html>

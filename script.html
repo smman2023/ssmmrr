@@ -1,0 +1,248 @@
+<script>
+
+let bookingData = {};
+
+//========================================
+// تحميل البيانات
+//========================================
+
+window.onload = function(){
+
+  google.script.run
+  .withSuccessHandler(function(result){
+
+      bookingData = result;
+
+      loadStages();
+
+  })
+  .getBookingData();
+
+}
+
+//========================================
+// تحميل المراحل
+//========================================
+
+function loadStages(){
+
+  const stage = document.getElementById("stage");
+
+  stage.innerHTML =
+  '<option value="">اختر المرحلة</option>';
+
+  bookingData.stages.forEach(function(item){
+
+      stage.innerHTML +=
+      `<option value="${item}">${item}</option>`;
+
+  });
+
+}
+
+//========================================
+// عند تغيير المرحلة
+//========================================
+
+document.addEventListener("DOMContentLoaded",function(){
+
+  document
+  .getElementById("stage")
+  .addEventListener("change",loadGrades);
+
+  document
+  .getElementById("grade")
+  .addEventListener("change",loadGroups);
+
+});
+
+//========================================
+// تحميل الصفوف
+//========================================
+
+function loadGrades(){
+
+    const stage =
+    document.getElementById("stage").value;
+
+    const grade =
+    document.getElementById("grade");
+
+    const group =
+    document.getElementById("group");
+
+    grade.innerHTML =
+    '<option value="">اختر الصف</option>';
+
+    group.innerHTML =
+    '<option value="">اختر الصف أولاً</option>';
+
+    if(stage=="") return;
+
+    bookingData.grades[stage].forEach(function(item){
+
+        grade.innerHTML +=
+        `<option value="${item}">${item}</option>`;
+
+    });
+
+}
+
+//========================================
+// تحميل المواعيد
+//========================================
+
+function loadGroups(){
+
+    const grade =
+    document.getElementById("grade").value;
+
+    const group =
+    document.getElementById("group");
+
+    group.innerHTML =
+    '<option value="">اختر الموعد</option>';
+
+    if(grade=="") return;
+
+    bookingData.groups[grade].forEach(function(item){
+
+        group.innerHTML +=
+        `<option value="${item}">${item}</option>`;
+
+    });
+
+}
+//========================================
+// حفظ الحجز
+//========================================
+
+function saveBooking(){
+
+    const data={
+
+        name:document.getElementById("name").value.trim(),
+
+        stage:document.getElementById("stage").value,
+
+        grade:document.getElementById("grade").value,
+
+        education:document.getElementById("education").value,
+
+        gender:document.getElementById("gender").value,
+
+        group:document.getElementById("group").value,
+
+        studentPhone:document.getElementById("studentPhone").value.trim(),
+
+        parentPhone:document.getElementById("parentPhone").value.trim()
+
+    };
+
+    //----------------------------------
+
+    if(data.name==""){
+
+        showMessage("اكتب اسم الطالب",false);
+
+        return;
+
+    }
+
+    if(data.stage==""){
+
+        showMessage("اختر المرحلة",false);
+
+        return;
+
+    }
+
+    if(data.grade==""){
+
+        showMessage("اختر الصف",false);
+
+        return;
+
+    }
+
+    if(data.education==""){
+
+        showMessage("اختر نوعية التعليم",false);
+
+        return;
+
+    }
+
+    if(data.gender==""){
+
+        showMessage("اختر النوع",false);
+
+        return;
+
+    }
+
+    if(data.group==""){
+
+        showMessage("اختر الموعد",false);
+
+        return;
+
+    }
+
+    //----------------------------------
+
+    const btn=document.querySelector("button");
+
+    btn.disabled=true;
+
+    btn.innerHTML="جارى حفظ البيانات...";
+
+    google.script.run
+
+    .withSuccessHandler(function(res){
+
+        btn.disabled=false;
+
+        btn.innerHTML="تأكيد الحجز";
+
+        showMessage(res.message,res.success);
+
+        if(res.success){
+
+            document.getElementById("bookingForm").reset();
+
+            document.getElementById("grade").innerHTML=
+            '<option value="">اختر المرحلة أولاً</option>';
+
+            document.getElementById("group").innerHTML=
+            '<option value="">اختر الصف أولاً</option>';
+
+        }
+
+    })
+
+    .saveBooking(data);
+
+}
+
+//========================================
+
+function showMessage(message,success){
+
+    const msg=document.getElementById("msg");
+
+    msg.innerHTML=message;
+
+    if(success){
+
+        msg.className="success";
+
+    }else{
+
+        msg.className="error";
+
+    }
+
+}
+
+</script>
