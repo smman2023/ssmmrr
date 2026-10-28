@@ -1,0 +1,949 @@
+﻿/*=========================================
+        Google Font
+=========================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+/*=========================================
+        Reset
+=========================================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Cairo',sans-serif;
+
+    background:#eef3fb;
+
+    direction:rtl;
+
+    color:#222;
+
+}
+
+/*=========================================
+        Container
+=========================================*/
+
+.container{
+
+    width:95%;
+
+    max-width:850px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+/*=========================================
+        Logo
+=========================================*/
+
+.logo{
+
+    display:block;
+
+    width:120px;
+
+    margin:20px auto;
+
+}
+
+/*=========================================
+        Titles
+=========================================*/
+
+.main-title{
+
+    text-align:center;
+
+    color:#0d47a1;
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+.sub-title{
+
+    text-align:center;
+
+    color:#555;
+
+    font-size:20px;
+
+    margin-top:8px;
+
+}
+
+.title-line{
+
+    width:120px;
+
+    height:5px;
+
+    background:#f9a825;
+
+    margin:18px auto 30px;
+
+    border-radius:10px;
+
+}
+
+/*=========================================
+        Banner
+=========================================*/
+
+.banner{
+
+    margin-bottom:30px;
+
+}
+
+.banner img{
+
+    width:100%;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+/*=========================================
+ /* =========================================
+   Search Box
+========================================= */
+
+.search-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.10);
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 58px;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 0 15px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    transition: .30s;
+    
+    /* التعديلات المطلوبة */
+    direction: rtl;            /* توجيه النص من اليمين إلى اليسار */
+    text-align: right;         /* محاذاة النص والرقام ناحية اليمين */
+    font-weight: bold;         /* جعل الخط عريض */
+    color: #000000;            /* لون النص أسود صريح */
+    box-sizing: border-box;    /* لضمان ضبط الأبعاد مع الأطراف */
+    outline: none;             /* إزالة الإطار الأزرق الافتراضي */
+}
+
+/* لتغيير شكل النص التوضيحي (Placeholder) ليكون خفيفاً قبل الكتابة */
+.search-box input::placeholder {
+    color: #888888;
+    font-weight: normal;       /* جعل النص التوضيحي عادي حتى يكتب المستخدم */
+}
+
+.search-box input:focus{
+
+    outline:none;
+
+    border-color:#0d47a1;
+
+}
+
+.search-btn{
+
+    width:100%;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.search-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+}
+/*=========================================
+        Result Card
+=========================================*/
+
+.result-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+}
+
+.result-title{
+
+    text-align:center;
+
+    color:#0d47a1;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+    font-weight:800;
+
+}
+
+.result-title i{
+
+    color:#f9a825;
+
+    margin-left:8px;
+
+}
+
+/*=========================================
+        Student Data
+=========================================*/
+
+.result-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    font-size:20px;
+
+}
+
+.result-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.result-label{
+
+    font-weight:700;
+
+    color:#444;
+
+}
+
+.result-label i{
+
+    color:#0d47a1;
+
+    margin-left:8px;
+
+}
+
+.result-value{
+
+    color:#000;
+
+    font-weight:bold;
+
+}
+
+/*=========================================
+        Attendance Buttons
+=========================================*/
+
+.attendance-btn-box{
+
+    margin-top:20px;
+
+}
+
+.attendance-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#2e7d32,#43a047);
+
+    color:#fff;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    box-shadow:0 6px 15px rgba(46,125,50,.30);
+
+}
+
+.attendance-btn:hover{
+
+    background:linear-gradient(135deg,#1b5e20,#2e7d32);
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(46,125,50,.45);
+
+}
+
+.attendance-btn i{
+
+    margin-left:10px;
+
+}
+
+/*=========================================
+        Back Button
+=========================================*/
+
+.back-btn{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:25px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#c62828,#e53935);
+
+    color:#fff;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.back-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+}
+
+/*=========================================
+        Hidden
+=========================================*/
+
+.hidden{
+
+    display:none;
+
+}
+/*=========================================
+        Tables
+=========================================*/
+
+.attendance-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.attendance-table th{
+
+    background:#0d47a1;
+
+    color:#fff;
+
+    padding:15px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.attendance-table td{
+
+    padding:14px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+    font-size:17px;
+
+}
+
+.attendance-table tr:nth-child(even){
+
+    background:#f7f9fc;
+
+}
+
+.attendance-table tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/*=========================================
+        Payment Summary
+=========================================*/
+
+.payment-summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.pay-box{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    text-align:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+
+}
+
+.pay-box span{
+
+    display:block;
+
+    font-size:17px;
+
+    color:#666;
+
+    margin-bottom:8px;
+
+}
+
+.pay-box strong{
+
+    font-size:28px;
+
+    color:#0d47a1;
+
+}
+
+/*=========================================
+        Success & Warning
+=========================================*/
+
+.success-box{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+.warning-box{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+.warning-box strong{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:32px;
+
+}
+
+/*=========================================
+        Table Wrapper
+=========================================*/
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    direction:ltr;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.table-wrapper table{
+
+    direction:rtl;
+
+    min-width:650px;
+
+}
+/*=========================================
+        Not Found
+=========================================*/
+
+.not-found{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+}
+
+.not-found i{
+
+    font-size:70px;
+
+    color:#d32f2f;
+
+    margin-bottom:20px;
+
+}
+
+.not-found h2{
+
+    color:#d32f2f;
+
+    font-size:28px;
+
+    line-height:1.8;
+
+}
+
+/*=========================================
+        Footer
+=========================================*/
+
+.footer{
+
+    margin-top:40px;
+
+    background:#0d47a1;
+
+    color:#fff;
+
+    border-radius:20px;
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+.footer h3{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+.footer p{
+
+    font-size:18px;
+
+    margin:8px 0;
+
+}
+
+.facebook-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:14px 25px;
+
+    background:#1877f2;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    transition:.30s;
+
+}
+
+.facebook-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+.facebook-btn i{
+
+    margin-left:8px;
+
+}
+
+.copyright{
+
+    margin-top:20px;
+
+    font-size:16px;
+
+    opacity:.85;
+
+}
+
+/*=========================================
+        Responsive
+=========================================*/
+
+@media (max-width:768px){
+
+.container{
+
+    width:98%;
+
+    padding:10px;
+
+}
+
+.logo{
+
+    width:90px;
+
+}
+
+.main-title{
+
+    font-size:26px;
+
+}
+
+.sub-title{
+
+    font-size:17px;
+
+}
+
+.result-title{
+
+    font-size:23px;
+
+}
+
+.result-row{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    font-size:17px;
+
+}
+
+.result-value{
+
+    width:100%;
+
+    text-align:right;
+
+}
+
+.search-box{
+
+    padding:18px;
+
+}
+
+.search-box input{
+
+    font-size:18px;
+
+    height:52px;
+
+}
+
+.search-btn{
+
+    font-size:20px;
+
+    height:54px;
+
+}
+
+.attendance-btn{
+
+    font-size:18px;
+
+    height:54px;
+
+}
+
+.back-btn{
+
+    font-size:18px;
+
+    height:54px;
+
+}
+
+/* الجداول */
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.attendance-table{
+
+    min-width:650px;
+
+    font-size:15px;
+
+}
+
+.attendance-table th{
+
+    padding:12px;
+
+    font-size:15px;
+
+}
+
+.attendance-table td{
+
+    padding:12px 8px;
+
+    font-size:15px;
+
+}
+
+/* بطاقات المدفوعات */
+
+.payment-summary{
+
+    grid-template-columns:1fr;
+
+}
+
+.pay-box strong{
+
+    font-size:24px;
+
+}
+
+.footer h3{
+
+    font-size:22px;
+
+}
+
+.footer p{
+
+    font-size:16px;
+
+}
+
+.facebook-btn{
+
+    width:100%;
+
+    font-size:18px;
+
+}
+
+}
+/*=========================================
+        Remember Me & Logout
+=========================================*/
+.remember-me-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #444;
+    font-weight: 600;
+}
+
+.remember-me-box input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    accent-color: #0d47a1;
+}
+
+.logout-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 15px;
+    background: #616161;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .30s;
+    margin-top: 10px;
+}
+
+.logout-btn:hover {
+    background: #424242;
+    transform: translateY(-2px);
+}
+
+/*=========================================
+        Notice Image Styles
+=========================================*/
+.notice-img-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.notice-img {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.notice-img:hover {
+    transform: scale(1.02);
+}
+/*=========================================
+        Video Portal Button Style
+=========================================*/
+.video-portal-btn {
+    width: 100%;
+    height: 58px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+    color: #fff;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .30s;
+    box-shadow: 0 6px 15px rgba(106, 27, 154, 0.30);
+}
+
+.video-portal-btn:hover {
+    background: linear-gradient(135deg, #4a148c, #6a1b9a);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(106, 27, 154, 0.45);
+}
+
+.video-portal-btn i {
+    margin-left: 10px;
+}
