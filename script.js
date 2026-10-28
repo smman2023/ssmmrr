@@ -2,13 +2,12 @@
 // Google Sheets APIs
 //=========================================
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwDZEsbQIQqUz-YJ8CcXW4YVfPD95l4z8Ou6kuAIojDlQBUsHVwWhUtSmc1jZR2CY-fyQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz4eWiLKJMZjiEvJ3HlWawVHbyLuAtp4BhDTzLN7gqRT3jlpWFBvle_UoiSzMPDgmYfzw/exec";
 const ATTENDANCE_API = "https://script.google.com/macros/s/AKfycbzd0as48EDKd4k9y2IMggJzTc9QGhMuUysa0X4R1Q6plhtGtFlnfMBbXnyZamZfFPN1/exec";
 const HOMEWORK_API = "https://script.google.com/macros/s/AKfycbyGgMFmNMPR6OAWNBemEoTF_jFs1u2AXaWJXFOeA6iVuOlgeJau1DuAutH89h9oP_hC-g/exec";
 const EXAM_API = "https://script.google.com/macros/s/AKfycbyrSNWCMtLaFZepp3OlxuLip2Pe02X2bndnkbqJE_2DszwwPPKsSnP1wsSlv7pqjvi8fA/exec";
 const PAYMENT_API = "https://script.google.com/macros/s/AKfycbwBxrvavrzIp_9tKKIk63OUYLhk30WkT_zU3JWFk7Km11Dmh8gB_ycqgoND_4Z-JwdX/exec";
 const NOTICE_API = "https://script.google.com/macros/s/AKfycbwl6OSRp_KCjrIuEjGDtg3FsXarWwZ6xvVFto_tzzUFl6lX7sWVXdK0OLhg7oKenWw-/exec";
-const VIDEO_API = "https://script.google.com/macros/s/AKfycbwMiDzkcJDVuEHGBRxco2-Mvecf3BvJNVRYhH8WM7uuekDReL9VcPOD4rsdEBy3DU9s/exec";
 
 let currentStudent = null;
 
@@ -17,8 +16,7 @@ let cacheData = {
     homework: null,
     exam: null,
     payment: null,
-    notice: null,
-    video: null
+    notice: null
 };
 
 // العناصر الأساسية
@@ -36,31 +34,27 @@ const homeworkBtn = document.getElementById("homeworkBtn");
 const examBtn = document.getElementById("examBtn");
 const paymentBtn = document.getElementById("paymentBtn");
 const noticeBtn = document.getElementById("noticeBtn");
-const videoBtn = document.getElementById("videoBtn");
 
-// الكروت (مع تحديث بطاقة Videoss)
+// الكروت
 const attendanceCard = document.getElementById("attendanceCard");
 const homeworkCard = document.getElementById("homeworkCard");
 const examCard = document.getElementById("examCard");
 const paymentCard = document.getElementById("paymentCard");
 const noticeCard = document.getElementById("noticeCard");
-const VideossCard = document.getElementById("VideossCard");
 
-// محتوى الكروت (مع تحديث محتوى VideossContent)
+// محتوى الكروت
 const attendanceContent = document.getElementById("attendanceContent");
 const homeworkContent = document.getElementById("homeworkContent");
 const examContent = document.getElementById("examContent");
 const paymentContent = document.getElementById("paymentContent");
 const noticeContent = document.getElementById("noticeContent");
-const VideossContent = document.getElementById("VideossContent");
 
-// أزرار العودة (مع تحديث زر العودة لـ Videoss)
+// أزرار العودة
 const backBtn = document.getElementById("backBtn");
 const backHomeworkBtn = document.getElementById("backHomeworkBtn");
 const backExamBtn = document.getElementById("backExamBtn");
 const backPaymentBtn = document.getElementById("backPaymentBtn");
-const backNoticeBtn = document.getElementById("backNoticeBtn");
-const backVideossBtn = document.getElementById("backVideossBtn");
+const backNoticeBtn = document.getElementById("backNoticeBtn") || document.getElementById("backNoticeCard");
 
 // التحقق من وجود تسجيل دخول مخزن مسبقاً
 window.addEventListener("DOMContentLoaded", () => {
@@ -84,7 +78,6 @@ if (homeworkBtn) homeworkBtn.addEventListener("click", showHomework);
 if (examBtn) examBtn.addEventListener("click", showExam);
 if (paymentBtn) paymentBtn.addEventListener("click", showPayments);
 if (noticeBtn) noticeBtn.addEventListener("click", showNotices);
-if (videoBtn) videoBtn.addEventListener("click", showVideoss);
 
 function goBackToResult() {
     if(attendanceCard) attendanceCard.classList.add("hidden");
@@ -92,7 +85,6 @@ function goBackToResult() {
     if(examCard) examCard.classList.add("hidden");
     if(paymentCard) paymentCard.classList.add("hidden");
     if(noticeCard) noticeCard.classList.add("hidden");
-    if(VideossCard) VideossCard.classList.add("hidden");
     if(result) result.classList.remove("hidden");
 }
 
@@ -101,13 +93,12 @@ if(backHomeworkBtn) backHomeworkBtn.addEventListener("click", goBackToResult);
 if(backExamBtn) backExamBtn.addEventListener("click", goBackToResult);
 if(backPaymentBtn) backPaymentBtn.addEventListener("click", goBackToResult);
 if(backNoticeBtn) backNoticeBtn.addEventListener("click", goBackToResult);
-if(backVideossBtn) backVideossBtn.addEventListener("click", goBackToResult);
 
 if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
         localStorage.removeItem("studentCode");
         localStorage.removeItem("studentPhone");
-        cacheData = { attendance: null, homework: null, exam: null, payment: null, notice: null, video: null };
+        cacheData = { attendance: null, homework: null, exam: null, payment: null, notice: null };
         if(codeInput) codeInput.value = "";
         if(passwordInput) passwordInput.value = "";
         if(result) result.classList.add("hidden");
@@ -127,14 +118,12 @@ function displayStudent(student){
     if(examCard) examCard.classList.add("hidden");
     if(paymentCard) paymentCard.classList.add("hidden");
     if(noticeCard) noticeCard.classList.add("hidden");
-    if(VideossCard) VideossCard.classList.add("hidden");
 
     if(attendanceBtn) attendanceBtn.classList.remove("hidden");
     if(homeworkBtn) homeworkBtn.classList.remove("hidden");
     if(examBtn) examBtn.classList.remove("hidden");
     if(paymentBtn) paymentBtn.classList.remove("hidden");
     if(noticeBtn) noticeBtn.classList.remove("hidden");
-    if(videoBtn) videoBtn.classList.remove("hidden");
 
     if(document.getElementById("studentCode")) document.getElementById("studentCode").textContent = student.code || "0";
     if(document.getElementById("studentName")) document.getElementById("studentName").textContent = student.name || "0";
@@ -217,10 +206,11 @@ async function searchStudent() {
     }
 }
 
-// تحميل البيانات بذكاء
+// تحميل البيانات بذكاء (إعطاء الأولوية القصوى للحضور لتحميله فوراً دون أي تأخير)
 async function preloadAllData(code) {
-    cacheData = { attendance: null, homework: null, exam: null, payment: null, notice: null, video: null };
+    cacheData = { attendance: null, homework: null, exam: null, payment: null, notice: null };
     
+    // 1. جلب بيانات الحضور فوراً ووضعها في الذاكرة المؤقتة
     try {
         const attResponse = await fetch(`${ATTENDANCE_API}?code=${encodeURIComponent(code)}`);
         cacheData.attendance = await attResponse.json();
@@ -228,6 +218,7 @@ async function preloadAllData(code) {
         cacheData.attendance = [];
     }
 
+    // 2. تأجيل باقي الأقسام في الخلفية لمنع التكدس على السيرفر
     setTimeout(async () => {
         const fetchSafe = (url) => fetch(`${url}?code=${encodeURIComponent(code)}`).then(res => res.json()).catch(() => []);
 
@@ -235,7 +226,6 @@ async function preloadAllData(code) {
         cacheData.exam = await fetchSafe(EXAM_API);
         cacheData.payment = await fetchSafe(PAYMENT_API);
         cacheData.notice = await fetchSafe(NOTICE_API);
-        cacheData.video = await fetchSafe(VIDEO_API);
     }, 600);
 }
 
@@ -258,7 +248,6 @@ async function renderFast(apiUrl, cardElement, contentElement, mappingFn, cacheK
     if(examCard) examCard.classList.add("hidden");
     if(paymentCard) paymentCard.classList.add("hidden");
     if(noticeCard) noticeCard.classList.add("hidden");
-    if(VideossCard) VideossCard.classList.add("hidden");
 
     cardElement.classList.remove("hidden");
 
@@ -379,7 +368,7 @@ function showNotices() {
             return `<div class="attendance-mobile-card notice-card"><div class="card-item"><span>📘 الحصة</span><strong>${item.lesson || '0'}</strong></div><div class="card-item"><span>📅 التاريخ</span><strong>${item.date || '0'}</strong></div><div style="margin-top:15px;line-height:2"><span style="color:#d32f2f;font-weight:bold">🔔 التنبيه</span><br>${item.notice || '0'}</div>${imgHtmlMobile}</div>`;
         }
 
-        let table = `<div class="table-wrapper"><table class="attendance-table"><tr><th>الحصة</th><th>التاريخ</th><th>التنبيه أو الملاحظة</th><th>الصورة المرفقةة</th></tr>`;
+        let table = `<div class="table-wrapper"><table class="attendance-table"><tr><th>الحصة</th><th>التاريخ</th><th>التنبيه أو الملاحظة</th><th>الصورة المرفقة</th></tr>`;
         item.forEach(row => {
             const rowImgUrl = row.image || row.imageUrl || row.photo || "";
             const imgHtmlDesktop = rowImgUrl ? `<a href="${rowImgUrl}" target="_blank"><img src="${rowImgUrl}" alt="صورة" style="width:150px; max-height:120px; border-radius:8px; object-fit:cover; box-shadow:0 3px 10px rgba(0,0,0,0.15);"></a>` : "0";
@@ -387,44 +376,4 @@ function showNotices() {
         });
         return table + `</table></div>`;
     }, 'notice');
-}
-
-// عرض الفيديوهات التعليمية (Videoss)
-function showVideoss() {
-    if(result) result.classList.add("hidden");
-    if(attendanceCard) attendanceCard.classList.add("hidden");
-    if(homeworkCard) homeworkCard.classList.add("hidden");
-    if(examCard) examCard.classList.add("hidden");
-    if(paymentCard) paymentCard.classList.add("hidden");
-    if(noticeCard) noticeCard.classList.add("hidden");
-    
-    if(VideossCard) VideossCard.classList.remove("hidden");
-
-    // جلب الفيديوهات مباشرة من بيانات الطالب المخزنة عند تسجيل الدخول
-    const videos = currentStudent && currentStudent.videos ? currentStudent.videos : [];
-
-    if (!videos || videos.length === 0) {
-        VideossContent.innerHTML = "<h3 style='text-align:center; padding: 20px; color: #555;'>لا توجد فيديوهات تعليمية متاحـة لهذا الصف حالياً</h3>";
-        return;
-    }
-
-    let html = "";
-    videos.forEach(item => {
-        const unitName = item.unit ? `(${item.unit})` : '';
-        const lessonName = item.lesson ? ` - ${item.lesson}` : '';
-        const videoTitle = item.title || 'فيديو تعليمي';
-        const videoLink = item.video || '#';
-
-        html += `
-            <div class="video-item-card" style="background:#f7f9fc; padding:20px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,0.08); text-align:center;">
-                <span style="display:block; color:#666; font-size:14px; margin-bottom:5px; font-weight:bold;">${unitName} ${lessonName}</span>
-                <h3 style="color:#0d47a1; margin-bottom:12px; font-size:20px;">${videoTitle}</h3>
-                <a href="${videoLink}" target="_blank" rel="noopener noreferrer" class="watch-video-btn" style="display:inline-block; background:linear-gradient(135deg,#0d47a1,#1976d2); color:#fff; padding:12px 25px; border-radius:10px; text-decoration:none; font-weight:bold; font-size:18px;">
-                    <i class="fa-solid fa-play"></i> مشاهدة الفيديو
-                </a>
-            </div>
-        `;
-    });
-
-    VideossContent.innerHTML = html;
 }
